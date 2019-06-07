@@ -1,22 +1,24 @@
 # Matts-Playhouse-Discord-Bot
 
-Commands and How to use them:
-  The Prefix for all commands is <b>!</b>
+# Commands and How to use them:
 
-!play takes a youtube url (https://www.youtube.com/watch?v=dQw4w9WgXcQ for example)
+The Prefix for all commands is <b>!</b>
 
-!stop will disconnect the bot from the voice channel
+<b>!play</b> takes a youtube url (https://www.youtube.com/watch?v=dQw4w9WgXcQ for example)
 
-!ping pings the bot to make sure it isnt dead
+<b>!stop</b> will disconnect the bot from the voice channel
 
-!server gives server related info back
+<b>!ping</b> pings the bot to make sure it isnt dead
+
+<b>!server</b> gives server related info back
 
 
-Discord Bot for Matts Playhouse Discord server
-
-Features to impliment
+# Features to impliment
   - Music (Youtube/localfiles)
   - Weather (Local)
   - Countdown Timer
   - Schedules
   - Reddit Reposter
+  
+  
+<h6>Discord Bot for Matts Playhouse Discord server</h6>
