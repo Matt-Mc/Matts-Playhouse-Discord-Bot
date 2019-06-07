@@ -1,30 +1,27 @@
 const Discord = require('discord.js');
 const ytdl = require('ytdl-core');
 const client = new Discord.Client();
+const dotenv = require('dotenv').config();
 
-require('dotenv').config()
-const { prefix, token } = { prefix: process.env.DISCORD_API_PREFIX, token: process.env.DISCORD_API_TOKEN }
+const prefix = process.env.DISCORD_API_PREFIX;
+const token = process.env.DISCORD_API_TOKEN;
 
-client.once('ready', () => {
-    console.log('Ready!');
-});
+const misc = require('./components/misc.js');
+const greeter = require('./components/greeter.js');
 
-
-client.on('guildMemberAdd', member => {
-    // Send the message to a designated channel on a server:
-    const channel = member.guild.channels.find(ch => ch.name === 'general');
-    // Do nothing if the channel wasn't found on this server
-    if (!channel) return;
-    // Send the message, mentioning the member
-    channel.send(`Welcome to the server bitch, ${member}`);
-});
+client.on('guildMemberAdd', greeter);
 
 client.on('message', message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-    const args = message.content.slice(prefix.length).split(' ');
-    const command = args.shift().toLowerCase();
+    const arr = message.content.substr(prefix.length).split(' ');
+    const command = arr.shift();
+    const args = arr;
 
+    if (misc.match(message))
+       misc.handle(message);
+
+    /*
     if (message.content === `${prefix}ping`) {
         // send back "Pong." to the channel the message was sent in
         message.channel.send('Pong.');
@@ -33,23 +30,17 @@ client.on('message', message => {
     } else if (message.content.includes(`${prefix}play`)) {
         // Only try to join the sender's voice channel if they are in one themselves
         if (message.member.voiceChannel) {
-
-            const connection = message.member.voiceChannel.join().then(connection =>{
-
+            message.member.voiceChannel.join().then(connection =>{
                 stream = ytdl(args[0],{ filter: 'audioonly' }).on("error",e => { console.error(error); message.channel.send("Oppsie Whoopsie, I couldnt play that UwU");})
-
                 connection.playStream(stream);
-
             });
-
         }
-
-
     } else if (message.content.includes(`${prefix}stop`)) {
           message.member.voiceChannel.leave()
     }
+    */
 });
 
-
-
-client.login(token);
+client.login(token)
+   .then(success => console.log("Ready"))
+   .catch(err => console.log(err));
