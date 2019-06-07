@@ -1,5 +1,7 @@
 # Matts-Playhouse-Discord-Bot
 
+![Build Status](https://travis-ci.org/Matt-Mc/Matts-Playhouse-Discord-Bot.svg?branch=master)
+
 # Running the bot
 
 ```
