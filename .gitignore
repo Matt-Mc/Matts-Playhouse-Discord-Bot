@@ -1,6 +1,7 @@
 config.json
 .vscode
-
+.DS_store
+package-lock.json
 # Logs
 logs
 *.log
