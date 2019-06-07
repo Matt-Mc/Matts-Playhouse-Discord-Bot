@@ -11,7 +11,7 @@ function convertKelvinToCelsius(kelvin) {
 
 function getCurrentWeatherByCityName( cityName ) {
     var key = weather_key;
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName+ '&appid=' + key)  
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + cityName+ '&appid=' + key)
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
         console.log(data);
@@ -22,6 +22,5 @@ function getCurrentWeatherByCityName( cityName ) {
   }
 
 module.exports.init = function () {
-    
-    console.log(getCurrentWeatherByCityName('Toronto'));
-  };
+   console.log(getCurrentWeatherByCityName('Toronto'));
+};
