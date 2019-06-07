@@ -1,5 +1,11 @@
 # Matts-Playhouse-Discord-Bot
 
+# Running the bot
+
+```
+npm install && npm start
+```
+
 # Commands and How to use them:
 
 The Prefix for all commands is <b>!</b>
