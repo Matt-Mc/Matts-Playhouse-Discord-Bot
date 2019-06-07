@@ -32,9 +32,14 @@ client.on('message', message => {
     } else if (message.content.includes(`${prefix}play`)) {
         // Only try to join the sender's voice channel if they are in one themselves
         if (message.member.voiceChannel) {
-            const connection = message.member.voiceChannel.join();
-  
-            connection.play(ytdl(args[0],{ filter: 'audioonly' }));
+
+            const connection = message.member.voiceChannel.join().then(connection =>{
+                
+                stream = ytdl(args[0],{ filter: 'audioonly' }).on("error",e => { console.error(error); message.channel.send("Oppsie Whoopsie, I couldnt play that UwU");})
+            
+                connection.playStream(stream);
+
+            });
 
         }
 
