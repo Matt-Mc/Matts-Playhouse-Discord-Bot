@@ -1,11 +1,12 @@
 const Discord = require('discord.js');
 const ytdl = require('ytdl-core');
 const client = new Discord.Client();
-const { prefix, token } = require('./config.json');
 
+require('dotenv').config()
+const { prefix, token } = { prefix: process.env.DISCORD_API_PREFIX, token: process.env.DISCORD_API_TOKEN }
 
 client.once('ready', () => {
-	console.log('Ready!');
+    console.log('Ready!');
 });
 
 
@@ -16,7 +17,7 @@ client.on('guildMemberAdd', member => {
     if (!channel) return;
     // Send the message, mentioning the member
     channel.send(`Welcome to the server bitch, ${member}`);
-  });
+});
 
 client.on('message', message => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -34,22 +35,19 @@ client.on('message', message => {
         if (message.member.voiceChannel) {
 
             const connection = message.member.voiceChannel.join().then(connection =>{
-                
+
                 stream = ytdl(args[0],{ filter: 'audioonly' }).on("error",e => { console.error(error); message.channel.send("Oppsie Whoopsie, I couldnt play that UwU");})
-            
+
                 connection.playStream(stream);
 
             });
 
         }
 
-            
+
     } else if (message.content.includes(`${prefix}stop`)) {
           message.member.voiceChannel.leave()
     }
-
-
-    
 });
 
 
