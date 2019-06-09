@@ -7,6 +7,7 @@ const prefix = process.env.DISCORD_API_PREFIX;
 const token = process.env.DISCORD_API_TOKEN;
 
 const misc = require('./components/misc.js');
+const porn = require('./components/porn.js');
 const greeter = require('./components/greeter.js');
 
 client.on('guildMemberAdd', greeter);
@@ -19,8 +20,9 @@ client.on('message', message => {
     const args = arr;
 
     if (misc.match(message))
-       misc.handle(message);
-
+        misc.handle(message);
+    if (porn.match(message))
+        porn.handle(message);
     /*
     if (message.content === `${prefix}ping`) {
         // send back "Pong." to the channel the message was sent in
@@ -42,5 +44,5 @@ client.on('message', message => {
 });
 
 client.login(token)
-   .then(success => console.log("Ready"))
-   .catch(err => console.log(err));
+    .then(success => console.log("Ready"))
+    .catch(err => console.log(err));
