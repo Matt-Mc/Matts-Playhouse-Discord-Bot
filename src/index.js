@@ -8,8 +8,8 @@ const token = process.env.DISCORD_API_TOKEN;
 
 const misc = require('./components/misc.js');
 const porn = require('./components/porn.js');
+const youtube = require('./components/youtube.js');
 const greeter = require('./components/greeter.js');
-
 client.on('guildMemberAdd', greeter);
 
 client.on('message', message => {
@@ -23,6 +23,9 @@ client.on('message', message => {
         misc.handle(message);
     if (porn.match(message))
         porn.handle(message);
+    if (youtube.match(message))
+        youtube.handle(message);
+
     /*
     if (message.content === `${prefix}ping`) {
         // send back "Pong." to the channel the message was sent in
