@@ -8,7 +8,11 @@ const token = process.env.DISCORD_API_TOKEN;
 
 const misc = require('./components/misc.js');
 const porn = require('./components/porn.js');
+<<<<<<< HEAD
 const youtube = require('./components/youtube.js');
+=======
+const youtube = require('./components/youtube.js')
+>>>>>>> 0640ec2361c890df81796170f7fbf0c322064c33
 const greeter = require('./components/greeter.js');
 client.on('guildMemberAdd', greeter);
 
@@ -25,6 +29,7 @@ client.on('message', message => {
         porn.handle(message);
     if (youtube.match(message))
         youtube.handle(message);
+<<<<<<< HEAD
 
     /*
     if (message.content === `${prefix}ping`) {
@@ -44,6 +49,8 @@ client.on('message', message => {
           message.member.voiceChannel.leave()
     }
     */
+=======
+>>>>>>> 0640ec2361c890df81796170f7fbf0c322064c33
 });
 
 client.login(token)
