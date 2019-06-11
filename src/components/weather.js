@@ -1,12 +1,14 @@
 const { weather_key } = require('../../config.json');
 const fetch = require("node-fetch");
-const url = 'https://api.openweathermap.org/data/2.5/weather?q=';
 
+const url = 'https://api.openweathermap.org/data/2.5/weather?q=';
+const command = 'weather'
 
 class Weather {
     static handleWeather(message) {
         var key = weather_key;
         fetch( url + message + '&appid=' + key )
+        //Note the temp returned is in Kelvin
         .then(function(resp) { return resp.json() }) // Convert data to json
         .then(function(data) {
             console.log(data);
@@ -16,19 +18,15 @@ class Weather {
         });
     }
     static handle(message) {
-        
+        const arr = message.content.split(' ');
+        const command = arr.shift().substr(1); // Maybe un-hardcode the length
+        const args = arr;
+        this.handleWeather(args);
+    }
+    static match(message) {
+        const command = message.content.split(' ').shift().substr(1); // Maybe un-hardcode the length
+        return matches.includes(command);
     }
 }
-function convertKelvinToCelsius(kelvin) {
-	if (kelvin < (0)) {
-		return 'below absolute zero (0 K)';
-	} else {
-		return (kelvin-273.15);
-	}
-}
 
-
-
-module.exports.init = function () {
-   console.log(getCurrentWeatherByCityName('Toronto'));
-};
+module.exports = Weather;

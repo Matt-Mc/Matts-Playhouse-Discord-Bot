@@ -11,6 +11,7 @@ const porn = require('./components/porn.js');
 const youtube = require('./components/youtube.js')
 const greeter = require('./components/greeter.js');
 const weather = require('./components/weather.js');
+
 client.on('guildMemberAdd', greeter);
 
 client.on('message', message => {
@@ -26,6 +27,8 @@ client.on('message', message => {
         porn.handle(message);
     if (youtube.match(message))
         youtube.handle(message);
+//    if (weather.match(message))
+//        weather.handle(message);
 });
 
 client.login(token)
